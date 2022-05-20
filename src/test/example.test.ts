@@ -25,4 +25,9 @@ describe('string calculator', () => {
     const result = add(numbers);
     expect(result).toBe(sum);
   });
+
+  it.each([["//;\n1;2", 3]])("should handle any delimiter", (numbers, sum) => {
+    const result = add(numbers);
+    expect(result).toBe(sum);
+  });
 })
