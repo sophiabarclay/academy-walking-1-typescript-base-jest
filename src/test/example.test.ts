@@ -15,9 +15,13 @@ describe('string calculator', () => {
     const result = add("1,2");
     expect(result).toBe(3);
   });
-  1
 
   it.each([["1,2,3", 6], ["1,2,3,4", 10], ["1,2,3,4,5,6,7,8,9,10", 55]])("should handle more than two numbers", (numbers, sum) => {
+    const result = add(numbers);
+    expect(result).toBe(sum);
+  });
+
+  it.each([["1\n2", 3], ["1\n2,3", 6]])("should handle new line between numbers", (numbers, sum) => {
     const result = add(numbers);
     expect(result).toBe(sum);
   });
