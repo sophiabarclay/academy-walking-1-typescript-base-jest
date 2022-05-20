@@ -10,4 +10,9 @@ describe('string calculator', () => {
     const result = add("1");
     expect(result).toBe(1);
   })
+
+  it("should return the number if string includes two numbers", () => {
+    const result = add("1,2");
+    expect(result).toBe(3);
+  })
 })
