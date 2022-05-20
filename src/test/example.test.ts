@@ -1,8 +1,8 @@
 import {Example} from "../main/example";
 
-describe('example test', () => {
-    it("should give sum of a + b when adding a and b", () => {
-        let example: Example = new Example();
-        expect(example.add(1, 2)).toBe(3);
+describe('string calculator', () => {
+    it("should return 0 if given an empty string", () => {
+        const example = new Example("");
+        expect(example).toBe(0);
     })
 })
