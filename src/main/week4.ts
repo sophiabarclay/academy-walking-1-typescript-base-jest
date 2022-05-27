@@ -6,32 +6,29 @@ const characters = [
 ];
 
 export const romanNumeraliser = (number: number): string => {
-  const numberSplit = number.toString().split("").reverse();
+  const numberSplit = Array.from(String(number), Number).reverse();
   let romanNumeral: string[] = [];
 
   numberSplit.forEach((value, idx) => {
+    if (value === 0) return;
+
     const currentSet = characters[idx];
+    let currentNumeral;
 
-    if (number >= 5) {
-      const difference = number - 5;
+    if (value === 9) {
+      currentNumeral = currentSet.numeral + characters[idx+1]?.numeral;
+    } else if (value >= 5) {
+      const difference = value - 5;
 
-      return currentSet.midPoint.padEnd(difference + 1, currentSet.numeral)
-    } else if (number === 4) {
-      return currentSet.numeral + currentSet.midPoint;
+      currentNumeral = currentSet.midPoint.padEnd(difference + 1, currentSet.numeral)
+    } else if (value === 4) {
+      currentNumeral = currentSet.numeral + currentSet.midPoint;
     } else {
-      return currentSet.numeral.padEnd(number, currentSet.numeral);
+      currentNumeral = currentSet.numeral.padEnd(value, currentSet.numeral);
     }
+
+    romanNumeral.unshift(currentNumeral);
   });
 
   return romanNumeral.join("");
 };
-
-// if (character.value !== 1 && number >= character.value) {
-//   const difference = number - character.value/2;
-
-//   return romanNumeral.push(character.midPoint.padEnd(difference + 1, character.numeral))
-// } else if (number === 4) {
-//   return character.numeral + character.midPoint;
-// } else {
-//   return character.numeral.padEnd(number, character.numeral);
-// }
