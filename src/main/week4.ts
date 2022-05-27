@@ -1,17 +1,28 @@
 const characters = [
-  {value: 1, numeral: "I", midPoint: "V"},
-  {value: 10, numeral: "X", midPoint: "L"},
-  {value: 100, numeral: "C", midPoint: "D"},
-  {value: 1000, numeral: "M", midPoint: "V"}
+  {numeral: "I", midPoint: "V"},
+  {numeral: "X", midPoint: "L"},
+  {numeral: "C", midPoint: "D"},
+  {numeral: "M", midPoint: "V"}
 ];
 
 export const romanNumeraliser = (number: number): string => {
   const numberSplit = number.toString().split("").reverse();
   let romanNumeral: string[] = [];
+
   numberSplit.forEach((value, idx) => {
-    if (number / characters[idx].value < 1) return false;
-    if ()
+    const currentSet = characters[idx];
+
+    if (number >= 5) {
+      const difference = number - 5;
+
+      return currentSet.midPoint.padEnd(difference + 1, currentSet.numeral)
+    } else if (number === 4) {
+      return currentSet.numeral + currentSet.midPoint;
+    } else {
+      return currentSet.numeral.padEnd(number, currentSet.numeral);
+    }
   });
+
   return romanNumeral.join("");
 };
 
