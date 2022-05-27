@@ -11,6 +11,7 @@ describe('roman numerals', () => {
     ${6} | ${"VI"}
     ${7} | ${"VII"}
     ${8} | ${"VIII"}
+    ${9} | ${"IX"}
   `('returns $expected when given $a as a position', ({a, expected}) => {
     expect(romanNumeraliser(a)).toBe(expected);
   });
